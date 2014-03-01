@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'bmitra';
+  src: url('/static/font/bmitra.eot?#') format('eot'),
+  url('/static/font/bmitra.ttf') format('truetype'),
+  url('/static/font/bmitra.woff') format('woff'),
+  url('/static/font/bmitra.otf') format('opentype');
+}
+
+body {
+  font-family: 'bmitra';
+  font-size: 18px;
+  text-align: right;
+  direction: rtl;
+  background-image:url('/static/images/bg.png');
+}
+
+.footer{
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
+  text-align: left;
+}
+
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

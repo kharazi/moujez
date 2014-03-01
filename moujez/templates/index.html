@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <br>
+    <img class="center-block" alt="Responsive image" src="static/images/logo.png"> </img>
+  </div>
+  <div class="row">
+    <p class="text-primary text-center">خبر‌ها را خلاصه کنید!</p>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <form role="form">
+        <div class="col-xs-1">
+          <button type="submit" id="send" class="btn btn-primary btn-lg">نمایش خلاصه</button>
+        </div>
+        <div class="col-xs-11">
+          <input type="text" id="input" class="form-control input-lg" placeholder="آدرس یا متن خبر را وارد کنید">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row"> 
+    <br>
+    <br>
+    <p class="bg-primary" id="result">
+    </p>
+  </div>
+</div>
+{% endblock %}
