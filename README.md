@@ -1,0 +1,3 @@
+Moujez
+------
+A news summarizer
