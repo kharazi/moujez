@@ -22,3 +22,4 @@ class Fetch(object):
             return 'news-studio'
         else:
             return 'unknown'
+
