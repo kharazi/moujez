@@ -17,25 +17,24 @@ def main():
 
 @app.route('/_add_numbers')
 def add_numbers():
+    summarizer = Summarizer()
+    
     a = request.args.get('a', 0, type=str)
-    print a
+    summarizer = Summarizer()
+    a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
     page = Fetch(a)
-    print "service", page.service
     if page.service == 'iransamane':
         service = IranSamane(page.page)
     elif page.service == 'news-studio':
         service = NewsStudio(page.page)
-    else:
-        return jsonify(result='bad request')
 
-    # resutl = service.fe
+    print "fetching content"
     content = service.fetch_content()
-    summarizer = Summarizer()
-    print "salaaaaaaaaam"
-    summarizer.summariz(content)
-    print "khodaaaaaafez"
-    return jsonify(result= unicode("fuck"))
+    print "end fetching"
+    summarized = summarizer.summarize(content)
+    print "end summarize"
+    return jsonify(result= summarized)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
