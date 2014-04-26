@@ -18,18 +18,20 @@ from src.summarize import Summarizer
 
 # print a.summarize(u'سلام خوبی. مرسی!',1)
 
-# a = Summarizer()
-# print a.summarize(u'سلام خوبی. مرسی! I am a teacher!', 1)
+a = Summarizer()
+a.sentences_number = 7
+print a._find_num_sentences()
+# print a.summarize(u'سلام خوبی. مرسی! I am a teacher!')
 
 
-summarizer = Summarizer()
-a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
-page = Fetch(a)
-if page.service == 'iransamane':
-    service = IranSamane(page.page)
-elif page.service == 'news-studio':
-    service = NewsStudio(page.page)
+# summarizer = Summarizer()
+# a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
+# page = Fetch(a)
+# if page.service == 'iransamane':
+#     service = IranSamane(page.page)
+# elif page.service == 'news-studio':
+#     service = NewsStudio(page.page)
 
-content = service.fetch_content()
-for i in  summarizer.summarize(content):
-    print i
+# content = service.fetch_content()
+# for i in  summarizer.summarize(content):
+#     print i
