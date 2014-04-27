@@ -33,7 +33,12 @@ def add_numbers():
     print "end fetching"
     summarized = summarizer.summarize(content)
     print "end summarize"
-    return jsonify(result= summarized)
+    res = {
+        'summarized': summarized,
+        'title': service.fetch_title(),
+        'tags': service.fetch_tags(),
+    }
+    return jsonify(result= res)
 
 
 if __name__ == "__main__":
