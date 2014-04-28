@@ -2,6 +2,7 @@
 import math
 
 from nltk.probability import FreqDist
+from nltk.corpus import stopwords
 from hazm import sent_tokenize, word_tokenize
 from hazm import Normalizer
 
@@ -24,7 +25,7 @@ class Summarizer(object):
 
     def _get_summarize(self, num_sentences):
         # if str(word not in stopwords.words()]
-        words = [word for word in self.base_words]
+        words = [word for word in self.base_words if word not in stopwords.words('persian')]
         word_frequencies = FreqDist(words)
 
         most_frequent_words = [pair[0] for pair in
