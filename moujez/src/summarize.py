@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
-from nltk.probability import FreqDist
-# from nltk.tokenize import RegexpTokenizer
-
-from hazm import sent_tokenize, word_tokenize
-from nltk.corpus import stopwords
-
-# from nltk.corpus import stopwords
-from hazm import Normalizer
-# import nltk.data
 import math
 
+from nltk.probability import FreqDist
+from hazm import sent_tokenize, word_tokenize
+from hazm import Normalizer
+
+
 class Summarizer(object):
+
     def __init__(self):
         self.normalizer = Normalizer()
 
@@ -29,12 +23,12 @@ class Summarizer(object):
         # return int(self.sentences_number - 0.2 * self.sentences_number)
 
     def _get_summarize(self, num_sentences):
-        words = [word for word in self.base_words] #if str(word not in stopwords.words()]
+        # if str(word not in stopwords.words()]
+        words = [word for word in self.base_words]
         word_frequencies = FreqDist(words)
 
         most_frequent_words = [pair[0] for pair in
-            word_frequencies.items()[:100]]
-        
+                               word_frequencies.items()[:100]]
 
         actual_sentences = sent_tokenize(self.input)
         output_sentences = []
@@ -42,17 +36,18 @@ class Summarizer(object):
         for word in most_frequent_words:
             for i in range(0, len(self.working_sentences)):
                 if (word in self.working_sentences[i]
-                  and actual_sentences[i] not in output_sentences):
+                        and actual_sentences[i] not in output_sentences):
                     output_sentences.append(actual_sentences[i])
                     break
-                if len(output_sentences) >= num_sentences: break
-        
-            if len(output_sentences) >= num_sentences: break
+                if len(output_sentences) >= num_sentences:
+                    break
+
+            if len(output_sentences) >= num_sentences:
+                break
 
         return self._reorder_sentences(output_sentences)
 
-
     def _reorder_sentences(self, output_sentences):
         output_sentences.sort(lambda s1, s2:
-            self.input.find(s1) - self.input.find(s2))
+                              self.input.find(s1) - self.input.find(s2))
         return output_sentences

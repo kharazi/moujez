@@ -18,7 +18,7 @@ def main():
 @app.route('/_add_numbers')
 def add_numbers():
     summarizer = Summarizer()
-    
+
     a = request.args.get('a', 0, type=str)
     summarizer = Summarizer()
     # a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
@@ -38,7 +38,7 @@ def add_numbers():
         'title': service.fetch_title(),
         'tags': service.fetch_tags(),
     }
-    return jsonify(result= res)
+    return jsonify(result=res)
 
 
 if __name__ == "__main__":

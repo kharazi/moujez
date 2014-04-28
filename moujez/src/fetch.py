@@ -3,7 +3,8 @@ from inspect import ismethod
 from bs4 import BeautifulSoup as Parser
 
 
-class Fetch(object):    
+class Fetch(object):
+
     def __init__(self, url):
         self.url = url
         self.page = Parser(self._fetch())
@@ -22,4 +23,3 @@ class Fetch(object):
             return 'news-studio'
         else:
             return 'unknown'
-

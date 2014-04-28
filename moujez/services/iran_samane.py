@@ -3,6 +3,7 @@ from service import Service
 
 
 class IranSamane(Service):
+
     def __init__(self, page):
         self.page = page
         # Service.__init__(self, page)
@@ -20,19 +21,16 @@ class IranSamane(Service):
 
     def fetch_news_code(self):
         return self.page.find('div', {'class': 'news_nav news_id_c'})
-        
+
     def fetch_publication_date(self):
         return self.page.find('div', {'class': 'news_nav news_pdate_c'})
 
     def fetch_tags(self):
         result = self.page.find('div',
-                                    {'class': 'tags_title'}
+                                {'class': 'tags_title'}
                                 ).text.strip().split(u'،')
         result[0] = result[0][result[0].find(':') + 1:]
         return [item.strip() for item in result]
 
     def fetch_category(self):
         return self.page.find('div', {'class': 'news_path'})
-
-
-

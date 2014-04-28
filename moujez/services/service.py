@@ -2,6 +2,7 @@ from inspect import ismethod
 
 
 class Service(object):
+
     def __init__(self, page):
         self.page = page
         for i in dir(self):
@@ -11,7 +12,7 @@ class Service(object):
                 getattr(self, i)()
 
     def fetch_title(self):
-        pass 
+        pass
 
     def fetch_subtitle(self):
         pass
@@ -29,4 +30,4 @@ class Service(object):
         pass
 
     def fetch_category(self):
-        pass 
+        pass
