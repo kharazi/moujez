@@ -7,13 +7,13 @@ class NewsStudio(Service):
         self.page = page
 
     def fetch_title(self):
-        return self.page.find('div', {'id': 'docDiv3TitrMain'})
+        return self.page.find('div', {'id': 'docDiv3TitrMain'}).text.strip()
 
     def fetch_subtitle(self):
         return self.page.find('div', {'id': 'docDiv4LeadTitle'})
 
     def fetch_content(self):
-        pass
+        return self.page.find('div', {'id': 'doc_div33'}).text.strip()
 
     def fetch_news_code(self):
         return self.page.find('div', {'id': 'docDiv5InfoCode'})
