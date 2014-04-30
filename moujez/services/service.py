@@ -1,3 +1,4 @@
+import re
 from inspect import ismethod
 
 
@@ -5,20 +6,45 @@ class Service(object):
 
     def __init__(self, page):
         self.page = page
-        for i in dir(self):
-            if i.startswith('fetch'):
-                print 5 * "\n"
-                print i
-                getattr(self, i)()
+        # for i in dir(self):
+        #     if i.startswith('fetch'):
+        #         print 5 * "\n"
+        #         print i
+        #         getattr(self, i)()
 
     def fetch_title(self):
-        pass
+
+        def _is_a_title_candidate(tag):
+            keywords = ["title", "Title", "TITLE"]
+
+            if tag.has_attr('class'):
+                for class_name in tag["class"]:
+                    for keyword in keywords:
+                        if keyword in class_name:
+                            return True
+
+            if tag.has_attr('id'):
+                for keyword in keywords:
+                    if keyword in tag["id"]:
+                        return True
+
+            if tag.name == "title":
+                return True
+
+            return False
+
+        print "-------------------\n" * 5
+        for i in self.page.find_all(_is_a_title_candidate):
+            print i
+        print "-------------------\n" * 5
+        print self.page.find("div", {"class": "PostTitle"})
+        return "this is title"
 
     def fetch_subtitle(self):
         pass
 
     def fetch_content(self):
-        pass
+        return unicode("this is content! i wanna to this is have 2 sentencess.")
 
     def fetch_news_code(self):
         pass
@@ -30,4 +56,7 @@ class Service(object):
         pass
 
     def fetch_category(self):
+        pass
+
+    def fetch_images(self):
         pass

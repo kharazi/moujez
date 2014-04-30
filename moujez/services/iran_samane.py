@@ -34,3 +34,6 @@ class IranSamane(Service):
 
     def fetch_category(self):
         return self.page.find('div', {'class': 'news_path'})
+
+    def fetch_images(self):
+        pass

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from src.fetch import Fetch
 from services.iran_samane import IranSamane
 from services.news_studio import NewsStudio
+from services.service import Service
 from src.summarize import Summarizer
 # from mongoengine import connect
 
@@ -27,9 +28,12 @@ def add_numbers():
         service = IranSamane(page.page)
     elif page.service == 'news-studio':
         service = NewsStudio(page.page)
+    else:
+        service = Service(page.page)
 
     print "fetching content"
     content = service.fetch_content()
+    print content
     print "end fetching"
     summarized = summarizer.summarize(content)
     print "end summarize"
