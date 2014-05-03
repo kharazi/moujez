@@ -28,5 +28,5 @@ class NewsStudio(Service):
     def fetch_category(self):
         return self.page.find('div', {'id': 'docDiv1Menu1'})
 
-    def fetch_images(self):
-        pass
+    def fetch_image(self):
+        return self.page.find('div', {'id': 'doc_div33'}).find('img')["src"]

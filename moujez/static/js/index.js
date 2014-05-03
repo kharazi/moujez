@@ -15,6 +15,10 @@ $(function() {
       $("#title").text(data.result.title);
 
 
+      if (data.result.image){
+        $("#image").attr("src", data.result.image);
+      }
+
       // get tags
       if (data.result.tags){
         tags_html_content = "<h3>برچسب‌های خبر</h3><ul>"

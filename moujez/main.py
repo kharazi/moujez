@@ -41,6 +41,7 @@ def add_numbers():
         'summarized': summarized,
         'title': service.fetch_title(),
         'tags': service.fetch_tags(),
+        'image': service.fetch_image(),
     }
     return jsonify(result=res)
 
