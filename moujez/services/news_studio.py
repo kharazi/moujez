@@ -29,4 +29,7 @@ class NewsStudio(Service):
         return self.page.find('div', {'id': 'docDiv1Menu1'})
 
     def fetch_image(self):
-        return self.page.find('div', {'id': 'doc_div33'}).find('img')["src"]
+        try:
+            return self.page.find('div', {'id': 'doc_div33'}).find('img')["src"]
+        except:
+            return None

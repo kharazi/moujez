@@ -36,4 +36,7 @@ class IranSamane(Service):
         return self.page.find('div', {'class': 'news_path'})
 
     def fetch_image(self):
-        return self.page.find('div', {'class': 'body'}).find('img')['src']
+        try:
+            return self.page.find('div', {'class': 'body'}).find('img')['src']
+        except:
+            return None
