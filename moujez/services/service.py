@@ -71,10 +71,8 @@ class Service(object):
         pass
 
     def fetch_image(self):
-        pass
-        # print "-------------------\n" * 5
-        # for i in self.page.find_all("img"):
-        #     print i.
-        # print "-------------------\n" * 5
-
+        for tag in self.page.find_all("img"):
+            if tag.parent.name == 'p':
+                return tag['src']
+        
 
