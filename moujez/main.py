@@ -33,7 +33,7 @@ def add_numbers():
 
     print "fetching content"
     content = service.fetch_content()
-    print content
+    # print content
     print "end fetching"
     summarized = summarizer.summarize(content)
     print "end summarize"

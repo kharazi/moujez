@@ -38,7 +38,10 @@ class Service(object):
         #TODO: Need change
         for tag in self.page.find_all(_is_a_title_candidate):
             if tag.name == "title":
-                return unicode(max(tag.text.split("-")))
+                a = tag.text.split("-")
+                print a[0], a[1], len(a[0]), len(a[1])
+                print max(a, key=len), len(max(a, key=len))
+                return unicode(max(tag.text.strip().split("-"), key=len))
 
         # print "-------------------\n" * 5
         # print self.page.find("div", {"class": "PostTitle"})
@@ -71,4 +74,5 @@ class Service(object):
         pass
 
     def fetch_images(self):
-        pass
+        print self.page.find_all("img")
+        
