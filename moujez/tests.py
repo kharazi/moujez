@@ -20,14 +20,14 @@ from src.summarize import Summarizer
 # print a.summarize(u'سلام خوبی. مرسی!',1)
 
 a = Summarizer()
-# a.sentences_number = 7
-# print a._find_num_sentences()
+a.sentences_number = 60
+print a._find_num_sentences()
 # print a.summarize(u'سلام خوبی. مرسی! I am a teacher!')
 
 
 # summarizer = Summarizer()
 # a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
-link = u'http://alef.ir/vdcc10qix2bqi08.ala2.html?224430'
+# link = u'http://alef.ir/vdcc10qix2bqi08.ala2.html?224430'
 
 # page = Fetch(a)
 # service = NewsStudio(page.page)
@@ -45,25 +45,25 @@ link = u'http://alef.ir/vdcc10qix2bqi08.ala2.html?224430'
 #     print i
 
 
-summarizer = Summarizer()
+# summarizer = Summarizer()
 
-# a = request.args.get('a', 0, type=str)
-a = "http://alef.ir/vdce7e8wnjh8wei.b9bj.html?224405"
-summarizer = Summarizer()
-# a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
-page = Fetch(a)
-# print page.page
-if page.service == 'iransamane':
-    service = IranSamane(page.page)
-elif page.service == 'news-studio':
-    service = NewsStudio(page.page)
+# # a = request.args.get('a', 0, type=str)
+# a = "http://alef.ir/vdce7e8wnjh8wei.b9bj.html?224405"
+# summarizer = Summarizer()
+# # a = u"http://www.asriran.com/fa/news/332468/%D9%BE%DB%8C%D8%A7%D9%85-%D8%B3%DB%8C%D8%AF-%D9%85%D8%AD%D9%85%D8%AF-%D8%AE%D8%A7%D8%AA%D9%85%DB%8C-%D8%A8%D9%87-%DA%A9%D9%86%DA%AF%D8%B1%D9%87-%D9%8A%DA%A9-%D8%AD%D8%B2%D8%A8"
+# page = Fetch(a)
+# # print page.page
+# if page.service == 'iransamane':
+#     service = IranSamane(page.page)
+# elif page.service == 'news-studio':
+#     service = NewsStudio(page.page)
 
-print "fetching content"
-print type(service.fetch_title())
-# print type(service.fetch_content())
-content = service.fetch_content()
-# print "end fetching"
-# print content
-summarized = summarizer.summarize(content)
-print summarized
-# print "end summarize"
+# print "fetching content"
+# print type(service.fetch_title())
+# # print type(service.fetch_content())
+# content = service.fetch_content()
+# # print "end fetching"
+# # print content
+# summarized = summarizer.summarize(content)
+# print summarized
+# # print "end summarize"
