@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<div class="container">
+  <div class="row">
+    <form method="post" action="/get_form">
+      <br>
+      <h1>ارزیابی پروژه‌ی موجز</h1>
+      از این که در ارزیابی کارگزار موجز کمک می‌کنید سپاسگزارم.
+      لطفا توضیحات هر مرحله را بخوانید و به سوالات پاسخ دهید
+
+      <h2>شما کی هستید؟!</h2>
+      لطفا نام و نام خانودگی خودتان را وارد کنید!
+      <input type="text" class="form-control input-lg" name="name" placeholder="نام و نام خانوادگی">
+      <input type="text" class="hidden" name="log_id" value="{{ news.log_id }}">
+      <h2>گام‌ یک</h2>
+      این ارزیابی سه مرحله دارد و این گام اول است. شما باید در سه مرحله به سوالات یکسانی پاسخ دهید.
+      برای پاسخ‌گویی به سوالات از دانسته‌های قبلی خودتان استفاده کنید و در مورد آن‌ها چیزی جستجو نکنید! ممکن است در این مرحله سوالات کمی‌ گنگ به نظر برسند و این اصلا چیز عجیبی نیست! لطفا هر چیزی که در مورد آن‌ها به ذهنتان می‌رسد را بنویسید! در صورتی که مطلقا چیزی راجع‌ به آن‌ها نمی‌دانید کافیست داخل کادر بنویسید:"نمی‌دانم"! 
+      <br >
+
+      <b>{{ questions.question_1 }}</b>
+      <textarea class="form-control" rows="3" name="11"></textarea>
+      <b>{{ questions.question_2 }}</b>
+      <textarea class="form-control" rows="3" name="12"></textarea>
+
+      <br><br><br><br><br><br><br><br>
+      <h2>گام‌ دوم</h2>
+      متن زیر را بخوانید! سپس مجددا به سوالات زیر پاسخ دهید:
+      <br>
+      <b> {{ news.title }} </b>
+      <br>
+      <ul>
+      {% for i in news.summarized_text %}
+        <li>
+        {{ i }}
+        </li>
+      {% endfor %}
+      </ul>
+      <br>
+      <b>{{ questions.question_1 }}</b>
+      <textarea class="form-control" rows="3" name="21"></textarea>
+      <b>{{ questions.question_2 }}</b>
+      <textarea class="form-control" rows="3" name="22"></textarea>
+
+      <br><br><br><br><br><br><br><br>
+      <h2>گام سوم</h2>
+      حال متن زیر را بخوانید و به سوالات پاسخ دهید:
+      <br>
+
+      <b> {{ news.title }} </b>
+      <br/>
+      {{ news.source }}
+
+      <br>
+      <b>{{ questions.question_1 }}</b>
+      <textarea class="form-control" rows="3" name="31"></textarea>
+      <b>{{ questions.question_2 }}</b>
+      <textarea class="form-control" rows="3" name="32"></textarea>
+
+      <h2>ارسال فرم</h2>
+      لطفا فرم را ارسال نمایید. با سپاس
+      <button type="submit" class="btn btn-primary btn-lg btn-block">ارسال</button>
+      <br>
+      <br>
+      <br>
+      <br>
+    </form>
+  </div>
+
+  </div>
+</div>
+{% endblock %}

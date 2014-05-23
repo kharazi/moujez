@@ -1,8 +1,9 @@
 import sqlite3
 import datetime
 import pickle
+import random
 import flask
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from src.fetch import Fetch
 from services.iran_samane import IranSamane
 from services.news_studio import NewsStudio
@@ -38,6 +39,19 @@ def query_db(query, args=(), one=False):
 def main():
     return render_template('index.html')
 
+@app.route("/get_form", methods=['POST'])
+def get_form():
+    print "get"
+    log_id = request.form['log_id']
+    query_db(
+        "INSERT INTO question_game_result VALUES (?,?,?,?,?,?,?,?)", 
+        [log_id, request.form["name"], request.form["11"], request.form["12"],
+        request.form["21"], request.form["22"], request.form["31"], request.form["32"]
+        ]
+        )
+    print request.form['name']
+    return redirect('/')
+    
 
 @app.route('/_add_numbers')
 def add_numbers():
@@ -69,10 +83,29 @@ def add_numbers():
 
     # For log
     log = (datetime.datetime.now(), res['title'], content, pickle.dumps(summarized)) 
-    query_db('INSERT INTO log VALUES (?,?,?,?)', log)
+    query_db('INSERT INTO log (submitted_time, title, source, summarized_text) VALUES (?,?,?,?)', log)
     # 
     return jsonify(result=res)
 
+
+@app.route('/evaluation/1')
+def evaluation_1():
+    random_number = random.randint(1, 1)
+    news = query_db("SELECT * FROM log WHERE log_id = ?", 
+        [random_number], one=True)
+    questions = query_db(
+        "SELECT * FROM questions_table WHERE news_id = ?",
+        [random_number], one=True
+        )
+    print "news is", questions
+    news["summarized_text"] = pickle.loads(news["summarized_text"])
+    return render_template('evaluation.html', news=news, questions=questions)
+
+
+@app.route('/result')
+def result():
+    news = query_db("SELECT * FROM question_game_result")
+    return render_template('result.html', news=news)
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
