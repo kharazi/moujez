@@ -26,11 +26,16 @@ class IranSamane(Service):
         return self.page.find('div', {'class': 'news_nav news_pdate_c'})
 
     def fetch_tags(self):
-        result = self.page.find('div',
-                                {'class': 'tags_title'}
-                                ).text.strip().split(u'،')
-        result[0] = result[0][result[0].find(':') + 1:]
-        return [item.strip() for item in result]
+        try:
+            result = self.page.find('div',
+                                    {'class': 'tags_title'}
+                                    ).text.strip().split(u'،')
+            result[0] = result[0][result[0].find(':') + 1:]
+            return [item.strip() for item in result]
+        
+        except Exception, e:
+            print str(e)
+
 
     def fetch_category(self):
         return self.page.find('div', {'class': 'news_path'})

@@ -12,7 +12,10 @@ cursor.execute("""
         submitted_time datatime,
         title text,
         source text,
-        summarized_text text
+        summarized_text text,
+        source_len real,
+        summarized_text_len real,
+        darsad real
     )
     """)
 
