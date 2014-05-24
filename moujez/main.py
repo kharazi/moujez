@@ -3,6 +3,7 @@ import datetime
 import pickle
 import random
 import flask
+from sets import Set
 from flask import Flask, render_template, request, jsonify, redirect
 from src.fetch import Fetch
 from services.iran_samane import IranSamane
@@ -106,6 +107,27 @@ def evaluation_1():
 def result():
     news = query_db("SELECT * FROM question_game_result")
     return render_template('result.html', news=news)
+
+@app.route('/keyword')
+def keyword_evaluation():
+    logs = query_db("SELECT * FROM log")
+    precision_sum = 0
+    recall_sum = 0
+    counter = 0
+    for log in logs:
+        counter += 1
+        a = Set(extract_keyword(log["source"])) 
+        b = Set(extract_keyword(log["summarized_text"]))
+        t = a & b
+        precision = len(t) / len(b)
+        recall = len(t) / len(a)
+        precision_sum += precision
+        recall_sum += recall
+
+    p = precision_sum / counter
+    r = recall_sum / counter
+    print p, r
+    return "salam"
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0")
