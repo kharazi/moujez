@@ -1,0 +1,1 @@
+_HST_cntval="#3Vis. today=304600";chfh2(_HST_cntval);

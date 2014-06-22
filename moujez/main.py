@@ -56,7 +56,6 @@ def get_form():
 
 @app.route('/_add_numbers')
 def add_numbers():
-    summarizer = Summarizer()
 
     a = request.args.get('a', 0, type=str)
     summarizer = Summarizer()
